@@ -16,7 +16,7 @@ class User < ApplicationRecord
   attr_accessor :login
   
   def login
-    @login || self.username || self.email
+    @login || self.username || self.email || self.contract
   end
 
   private
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   def self.find_for_database_authentication(warden_condition)
     conditions = warden_condition.dup
     if(login = conditions.delete(:login))
-      where(conditions.to_h).where(["lower(username)= :value OR lower(email)= :value",{value: login.downcase}]).first
+      where(conditions.to_h).where(["lower(username)= :value OR lower(email)= :value OR contract= :value",{value: login.downcase}]).first
     elsif conditions.has_key?(:username) || conditions.has_key(:email)
       where(conditions.to_h).first
     end
