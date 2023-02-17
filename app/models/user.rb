@@ -12,8 +12,8 @@ class User < ApplicationRecord
          :trackable,
          authentication_keys:[:login]
 
-  validates :username, presence: true, uniqueness: true
-  validates :contract,format: { with: /\A\d{10,13}\z/}
+  validates :username, presence: true, uniqueness: true,on: [:create, :update]
+  validates :contract,format: { with: /\A\d{10,13}\z/},on: [:create, :update]
 
   attr_accessor :login
 

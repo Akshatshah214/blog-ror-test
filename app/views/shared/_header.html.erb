@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
   <div class="container-fluid">
     <%= link_to "MyBlog" ,root_path, class:'navbar-brand'%>
    
@@ -17,6 +17,16 @@
         
 <%=link_to "logout" ,destroy_user_session_path, data: {turbo_method: :delete},class:'nav-link active'%>
 </li>
+<li class="nav-item">
+
+<%# <%=image_tag(current_user.image,style: 'height:10%;width:10%;float:right;margin-left: auto;border-radius: 50%;')%>
+
+<a href="/home/userprofile", style="text-align:right;color:white;text-decoration: none;float: right;">your profile</a> 
+<%# <%= link_to "your profile",profile_home,class:'nav-link active' %> 
+
+</li>
+
+
 <% else%>
  <li class="nav-item">
 <%= link_to "login" ,new_user_session_path,class:'nav-link active' %>
