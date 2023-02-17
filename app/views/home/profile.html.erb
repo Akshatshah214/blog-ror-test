@@ -1,1 +1,10 @@
-<h1>user profile</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+<%= image_tag ("/assets/update.png"), style: 'height:5%;width:5%;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%><%= link_to "update profile",edit_registration_path(current_user), :style=>'text-align: right;' %>
+<%= image_tag ("/assets/delete.jpeg"), style: 'height:6%;width:6%;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%><%= link_to "cancle account",registration_path(current_user),data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, :style=>'color: red;text-align: right;'%>
+
+<h1>user profile page</h1> 
+<h3> <%= current_user.username %> </h3>
+
