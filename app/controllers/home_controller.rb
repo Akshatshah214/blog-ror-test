@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @user= current_user
+    @user=User.all
+  end
+
+  def profile
+    render template: "home/profile"
   end
 end

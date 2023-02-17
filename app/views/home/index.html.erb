@@ -3,7 +3,29 @@
 
 <% if user_signed_in?%>
 <p> Hey <%= current_user.username %> after login page show</p>
+
+<a href="/home/userprofile">user profile</a>
+
 <% else%>
 <p> before login page show</p>
 
 <% end %>
+
+<table>
+<tr>
+<th>Emails</th>
+<th>username</th>
+<th>image</th>
+</tr>
+
+<tr>
+<% @user.each do |user|%>
+<%#= format_name(student.Firstname)%>
+<td><%= user.email %></td>
+<td><%=user.username%></td>
+<td><%=image_tag(user.image)%>
+
+</tr>
+
+<%end%>
+</table>

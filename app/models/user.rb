@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  has_one_attached :image
   devise :database_authenticatable,
          :registerable,
          :recoverable, 
@@ -14,6 +16,14 @@ class User < ApplicationRecord
   validates :contract,format: { with: /\A\d{10,13}\z/}
 
   attr_accessor :login
+
+  after_commit :add_default_cover, on: [:create, :update]
+
+  private def add_default_cover
+    unless image.attached?
+      self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.jpeg")), filename: 'default.jpg' , content_type: "image/jpg")
+    end
+  end
   
   def login
     @login || self.username || self.email || self.contract
