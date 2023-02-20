@@ -6,26 +6,24 @@
 <p> Hey <%= current_user.username %> after login page show</p>
 
 
+
 <% else%>
 <p> before login page show</p>
 
 <% end %>
-
 <table>
-<tr>
-<th>Emails</th>
-<th>username</th>
-<th>image</th>
-</tr>
 
 <tr>
-<% @user.each do |user|%>
-<%#= format_name(student.Firstname)%>
-<td><%= user.email %></td>
-<td><%=user.username%></td>
-<td><%=image_tag(user.image)%>
+<% @post.each do |post|%>
+
+<td><%=post.title %></td>
+<td><%=post.content%></td>
+<td><%=post.author%>
+<td><%=image_tag(post.file)%>
 
 </tr>
 
 <%end%>
 </table>
+
+

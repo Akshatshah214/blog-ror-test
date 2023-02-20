@@ -1,0 +1,28 @@
+<h1>New post</h1>
+
+<%= form_with model: @post do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+   <div>
+    <%= form.label :author %><br>
+    <%= form.text_field :author, value:current_user.username,:readonly => true%>
+  </div>
+  <div>
+    <%= form.label :published %><br>
+    <%= form.check_box :published %>
+
+  <div>
+  <div >
+    <%= form.label :file %><br/>
+    <%= form.file_field :file %>
+  </div>
+    <%= form.submit %>
+  </div>
+<% end %>
