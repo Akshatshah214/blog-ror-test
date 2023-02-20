@@ -6,4 +6,7 @@ class HomeController < ApplicationController
   def profile
     render template: "home/profile"
   end
+  def userpage
+    render template: "home/userpost"
+  end
 end

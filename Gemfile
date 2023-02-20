@@ -74,3 +74,6 @@ end
 
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'bootstrap', '~> 5.2.2'
+gem "font-awesome-sass", "~> 6.3.0"
+

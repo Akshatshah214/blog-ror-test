@@ -1,10 +1,66 @@
 
-<%= image_tag ("/assets/update.png"), style: 'height:5%;width:5%;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%><%= link_to "update profile",edit_registration_path(current_user), :style=>'text-align: right;' %>
-<%= image_tag ("/assets/delete.jpeg"), style: 'height:6%;width:6%;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%><%= link_to "cancle account",registration_path(current_user),data: {
+<a href="/users/edit"><%= image_tag ("/assets/update.jpeg"), style: 'height:30px;width:30px;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%></a>
+<%= link_to image_tag("/assets/delete.jpeg",style: 'height:50px;width:50px;margin-left: 1075px;border-radius: 50%;'),registration_path(current_user),data: { 
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  }, :style=>'color: red;text-align: right;'%>
+}%>
+                  
 
-<h1>user profile page</h1> 
-<h3> <%= current_user.username %> </h3>
 
+
+<section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+            
+                <%=image_tag(current_user.image,class:"img-fluid my-5",style:'height:50%;width:80%;border-radius: 50%;margin-top:25px',class: "img-responsive")%>
+               
+              <h5>Marie Horwitz</h5>
+              <p>Web Designer</p>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                 <h3><%= current_user.username %></h3>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  
+             
+                
+                <div class="row pt-1">
+        
+                  <li class="contacts-block__item">
+                    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                    <span><%= current_user.birth_date %></span>
+                  </li>
+                
+                  <li class="contacts-block__item">
+                   <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span><%= current_user.email%></span>
+                  </li>
+                  <li class="contacts-block__item">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span><%= current_user.contact %></span>
+                  </li>
+                  
+                  <li class="contacts-block__item mb-0">
+                    <i class="fa fa-adjust" aria-hidden="true"></i>
+                    <span><%= current_user.address %></span>
+                  </li>
+                </ul>
+                </div>
+                
+               
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

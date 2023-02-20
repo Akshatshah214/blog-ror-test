@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_one_attached :image
+  has_many :posts
   devise :database_authenticatable,
          :registerable,
          :recoverable, 
@@ -13,7 +14,7 @@ class User < ApplicationRecord
          authentication_keys:[:login]
 
   validates :username, presence: true, uniqueness: true,on: [:create, :update]
-  validates :contract,format: { with: /\A\d{10,13}\z/},on: [:create, :update]
+  validates :contact,format: { with: /\A\d{10,13}\z/},on: [:create, :update]
 
   attr_accessor :login
 
@@ -26,7 +27,7 @@ class User < ApplicationRecord
   end
   
   def login
-    @login || self.username || self.email || self.contract
+    @login || self.username || self.email || self.contact
   end
 
   private
@@ -39,7 +40,7 @@ class User < ApplicationRecord
   def self.find_for_database_authentication(warden_condition)
     conditions = warden_condition.dup
     if(login = conditions.delete(:login))
-      where(conditions.to_h).where(["lower(username)= :value OR lower(email)= :value OR contract= :value",{value: login.downcase}]).first
+      where(conditions.to_h).where(["lower(username)= :value OR lower(email)= :value OR contact= :value",{value: login.downcase}]).first
     elsif conditions.has_key?(:username) || conditions.has_key(:email)
       where(conditions.to_h).first
     end

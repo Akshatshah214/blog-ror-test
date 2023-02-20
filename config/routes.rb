@@ -5,8 +5,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
   }
+  resources :posts
+
   root 'home#index'
   get "/home/userprofile", to: "home#profile"
+  get "/home/userpage",to:"home#userpage"
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
