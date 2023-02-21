@@ -1,29 +1,19 @@
 
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 
-<% if user_signed_in?%>
-<p> Hey <%= current_user.username %> after login page show</p>
-
-
-
-<% else%>
-<p> before login page show</p>
-
-<% end %>
-<table>
-
-<tr>
 <% @post.each do |post|%>
+<div class="card" style="width: 48rem;padding :25px;margin-top:50px;margin-left:150px;">
 
-<td><%=post.title %></td>
-<td><%=post.content%></td>
-<td><%=post.author%>
-<td><%=image_tag(post.file)%>
+  <%=image_tag(post.file,style:'height:225px;width:550px;margin-left:70px;') %>
+  <div class="card-body">
+    <h5 class="card-title"><%=post.title %></h5>
+    <p class="card-text"><%=post.content%></p>
+    <p class="card-text text-primary">created by:<%=post.author%></p>
+   
+  </div>
+ 
 
-</tr>
-
+</div>
+<br>
 <%end%>
-</table>
 
 

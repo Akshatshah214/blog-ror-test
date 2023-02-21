@@ -1,12 +1,10 @@
 
-
 <div class='col-lg-6 mx-lg-auto'>
   <div class='card shadow' style="width: 25rem;">
     <div class='card-header'>
       <h2 class='card-title text-center'>New post</h2>
     </div>
     <div class='card-body'>
-
     <%= form_with model: @post do |form| %>
     <% if @post.errors.any? %>
   <div id="error_explanation">
@@ -17,7 +15,6 @@
     </ul>
   </div>
 <% end %>
-
   <div>
     <%= form.label :title,class:"form-group" %><br>
     <%= form.text_field :title ,class: "form-control form-control-lg mb-3"%>

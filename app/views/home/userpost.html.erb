@@ -1,3 +1,66 @@
-<a href="/home/userprofile"><%= image_tag ("/assets/user.jpeg"), style: 'height:40px;width:40px;float:right;margin-left: auto;border-radius: 50%;',class: "img-responsive"%></a>
-<h1>user post<h1>
-<%= link_to image_tag("/assets/post.png",style: 'height:50px;width:50px;margin-left: 1075px;border-radius: 50%;'),new_post_path%>
+
+
+<%#= link_to image_tag("/assets/post.png",style: 'height:50px;width:50px;margin-left: 1075px;border-radius: 50%;'),new_post_path%>
+
+  <div class="container  h-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-md-9 col-lg-7 col-xl-5">
+        <div class="card" style="border-radius: 15px; background-color: #93e2bb;">
+          <div class="card-body p-4 text-black">
+            <div>
+          
+            </div>
+            <div class="d-flex align-items-center mb-4">
+              <div class="flex-shrink-0">
+               <%=image_tag(current_user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;')%>
+  
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <div class="d-flex flex-row align-items-center mb-2">
+                  <p class="mb-0 me-2">@<%= current_user.username %></p>
+                  <ul class="mb-0 list-unstyled d-flex flex-row" style="color: #1B7B2C;">
+
+                  </ul>
+                </div>
+                <div>
+                  <a href="/posts/new" class="btn btn-outline-dark btn-rounded btn-sm"
+                    data-mdb-ripple-color="dark">+ New Post</a>
+                  <a href="/home/userprofile" class="btn btn-outline-dark btn-rounded btn-sm"
+                    data-mdb-ripple-color="dark">See profile</a>
+                  <%# <button type="button" class="btn btn-outline-dark btn-floating btn-sm"
+                    data-mdb-ripple-color="dark"><i class="fas fa-comment"></i></button> %>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <p class="my-4 pb-1"><b>Posts: <%= current_user.posts.count%></b></p>
+            
+           
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+           
+<br>
+<% @post.each do |post|%>
+<div class="card" style="width: 48rem;padding :25px;margin-top:50px;margin-left:150px;">
+
+  <%=image_tag(post.file,style:'height:225px;width:550px;margin-left:70px;') %>
+  <div class="card-body">
+    <h5 class="card-title"><%=post.title %></h5>
+    <p class="card-text"><%=post.content%></p>
+    <p class="card-text text-primary">created by: <%=post.author%></p>
+    
+  <%= link_to image_tag("/assets/editpost.png",style: 'height:50px;width:50px;'), edit_post_path(post) %></li>
+  <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), post_path(post), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+    
+  </div>
+ 
+
+</div>
+<br>
+<%end%>
