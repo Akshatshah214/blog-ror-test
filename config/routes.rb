@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admins/index'
   get 'comments/index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -9,8 +10,15 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments 
   end
-
+  
+  resources :admins do
+    member do
+      get :userprofile
+    end
+  end
   root 'home#index'
+
+ 
   get "/home/userprofile", to: "home#profile"
   get "/home/userpage",to:"home#userpage"
 

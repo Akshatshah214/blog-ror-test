@@ -1,0 +1,20 @@
+
+
+<% @user.each do |user|%>
+<div class="card" style="width:38rem;padding :25px;margin-top:50px;margin-left:150px;">
+
+ 
+  <div class="card-body">
+      <p><%=link_to image_tag(user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;margin-right:20px;'),userprofile_admin_path(user.id)%></a>
+    <b> Posts: <%= user.posts.count%><span style="margin-right:20px"></span>
+    Comments:<%=Comment.joins(:post).where(:posts => { :user_id => user.id}).count%>
+    </b></p>
+    <h4 class="card-text"><%=user.username %></h4>
+   
+
+  </div>
+ 
+
+</div>
+<br>
+<%end%>

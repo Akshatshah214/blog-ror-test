@@ -30,6 +30,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to post_comments_url, status: :see_other
   end
+  
   private
     def comment_params
       params.require(:comment).permit(:body)

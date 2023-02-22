@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.all
   end
+
   def new
     @post = Post.new
   end
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
 
     redirect_to "/home/userpage", status: :see_other
   end
+  
   private
     def post_params
       params.require(:post).permit(:title ,:content,:author,:published,:file)

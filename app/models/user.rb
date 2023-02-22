@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true,on: [:create, :update]
   validates :contact,format: { with: /\A\d{10,13}\z/},on: [:create, :update]
-  validates :image, presence: true, content_type: ['image/png', 'image/jpeg','image/jpg']
+  validates :image, content_type: ['image/png', 'image/jpeg','image/jpg']
 
   attr_accessor :login
 

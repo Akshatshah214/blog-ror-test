@@ -1,5 +1,5 @@
 
-<a href="/posts/new"><%= image_tag ("/assets/newp.jpeg"), style: 'height:50px;width:50px;float:right;margin-left: auto;margin-top:10px;',class: "img-responsive"%></a>
+
 <%#= link_to image_tag("/assets/post.png",style: 'height:50px;width:50px;margin-left: 1075px;border-radius: 50%;'),new_post_path%>
 
   <div class="container h-50" style="margin-top:20px;">
@@ -12,30 +12,28 @@
             </div>
             <div class="d-flex align-items-center mb-4">
               <div class="flex-shrink-0">
-               <%=image_tag(current_user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;')%>
+               <%=image_tag(@user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;')%>
   
               </div>
               <div class="flex-grow-1 ms-3">
                 <div class="d-flex flex-row align-items-center mb-2">
-                  <p class="mb-0 me-2">@<%= current_user.username %></p>
+                  <p class="mb-0 me-2">@<%= @user.username %></p>
                   <ul class="mb-0 list-unstyled d-flex flex-row" style="color: #1B7B2C;">
 
                   </ul>
                 </div>
                 <div>
-                  <%# <a href="/posts/new" class="btn btn-outline-dark btn-rounded btn-sm"
-                    data-mdb-ripple-color="dark">+ New Post</a> %>
-                
-                     <% if @current_user.admin == true%>
-                   <a href="/admins" class="btn btn-outline-dark btn-rounded btn-sm"
-                    data-mdb-ripple-color="dark">All user</a>
-                     <% end %>
+                 
+                  <a href="/home/userprofile" class="btn btn-outline-dark btn-rounded btn-sm"
+                    data-mdb-ripple-color="dark">See profile</a>
+                    
+            
                   
                 </div>
               </div>
             </div>
             <hr>
-            <p class="my-4 pb-1"><b>Posts: <%= current_user.posts.count%></b>
+            <p class="my-4 pb-1"><b>Posts: <%= @user.posts.count%></b>
             <b style="margin-left:25px;">Comments: <%=@cm %> </b></p>
             
            
