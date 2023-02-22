@@ -1,0 +1,35 @@
+
+
+<div class='col-lg-6 mx-lg-auto'>
+  <div class='card shadow' style="width: 25rem;">
+    <div class='card-header'>
+      <h2 class='card-title text-center'>Add Comments</h2>
+    </div>
+    <div class='card-body'>
+
+    <%= form_with(model: [@post, @comment ], local:true)  do |form| %>
+    <% if @comment.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div>
+    <%= form.label :body,"Comment" ,class:"form-group" %><br>
+    <%= form.text_field :body ,class: "form-control form-control-lg mb-3"%>
+  </div>
+
+  <div class="actions text-center"><br>
+    <%= form.submit class:'btn btn-lg btn-primary mb-4' %>
+  </div>
+<% end %>
+
+    </div>
+  </div>
+</div>
+<h1></h1>
+

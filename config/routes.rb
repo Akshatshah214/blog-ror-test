@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'comments/index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
   }
-  resources :posts
+  resources :posts do
+    resources :comments 
+  end
 
   root 'home#index'
   get "/home/userprofile", to: "home#profile"

@@ -1,0 +1,32 @@
+<% if user_signed_in?%>
+<% @comment.each do |comment| %>
+
+  <div class="card" style="width: 38rem;margin-top:10px;margin-left:150px;">
+    <div class="card-body">
+
+      <p class="card-text"><%= comment.body %>
+    
+      <% if @current_user.id == @post.user.id%>
+      <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), [comment.post, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+      <%end%>
+      
+      </p>
+      
+    </div>
+
+  </div>
+
+  <br>
+<% end %>
+<br>
+<div>
+<%= link_to "Add new", new_post_comment_path(@post.id) ,class:"btn btn-secondary",style:"width:100px;height:40px;margin-left:150px;margin-top:10px;"%>
+</div>
+<% else %>
+  <p class="notice alert alert-info alert-dismissible fade show m-1"><%= notice%></p>
+<% end %>
+
+
