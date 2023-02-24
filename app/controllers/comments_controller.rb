@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+ 
   def index
     if user_signed_in?
       @post = Post.find(params[:post_id])
@@ -28,6 +29,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
+    authorize! :destroy, @comment
     redirect_to post_comments_url, status: :see_other
   end
   

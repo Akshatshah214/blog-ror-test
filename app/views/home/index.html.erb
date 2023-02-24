@@ -1,21 +1,52 @@
+<div class="row" style="margin-top:50px;margin-left:100px;">
 
-
-<% @post.each do |post|%>
-<div class="card" style="width: 48rem;padding :25px;margin-top:50px;margin-left:150px;">
-
-  <%=image_tag(post.file,style:'height:225px;width:550px;margin-left:70px;') %>
-  <div class="card-body">
-    <h5 class="card-title"><%=post.title %></h5>
-    <p class="card-text"><%=post.content%></p>
-    <p class="card-text text-primary">created by:<%=post.author%></p>
-    
-    <%= link_to image_tag("/assets/comment1.png",style:'height:35px;width:35px;'),post_comments_path(post.id) %>
-   
+  <div class="col-4" ><a href="/home/yoga" class="btn btn-outline-secondary">Yoga</a>
   </div>
- 
-
+  <div class="col-4" ><a href="/home/food" class="btn btn-outline-secondary">Food</a>
+  </div>
+  <div class="col-4" ><a href="/home/historical" class="btn btn-outline-secondary">Historical</a>
+  </div>
 </div>
-<br>
-<%end%>
 
+<% @post.each do |post| %>
+  <div
+    class="card"
+    style="width: 18rem;padding :25px;margin-top:50px;margin-left:80px;"
+  >
 
+    <%= image_tag(post.file, style: "height:225px;width:250px;") %>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.content %></p>
+      <p class="card-text text-primary">created by:<%= post.author %></p>
+
+      <p><%= link_to image_tag("/assets/comment1.png", style: "height:35px;width:35px;"),
+      post_comments_path(post.id) %>
+      <% if can? :update, post %>
+      <%= link_to image_tag("/assets/editpost.png",style: 'height:50px;width:50px;'), edit_post_path(post) %></li>
+      <% end %>
+
+      <% if can? :destroy, post %>
+      <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), post_path(post), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+      <% end %>
+      </p>
+      <p><%=Comment.where("post_id=?",post.id).count%></p>
+      <p><%= link_to "All comments",post_comments_path(post.id),style:"color:Gray;text-decoration: none;" %></p>
+     
+       <%a1 = Postsave.where(user_id:current_user,post_id:post.id)%>
+       <% if a1.empty? == true %>
+       
+          <p><%= link_to image_tag("/assets/save.png",style: 'height:35px;width:35px;'),post_create_order_path(post.id) %></p>
+       <%else%>
+         <p><%= image_tag("/assets/unsave.png",style: 'height:45px;width:45px;')%>
+       <% end %>
+    </div>
+
+  </div>
+<% end %>
+<div style="margin-left:800px;margin-top:10px;">
+  <%= paginate @post %>
+</div>

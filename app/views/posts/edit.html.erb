@@ -24,10 +24,7 @@
     <%= form.label :content ,class:"form-group"%><br>
     <%= form.text_area :content,class: "form-control form-control-lg mb-3" %>
   </div>
-   <div>
-    <%= form.label :author ,class:"form-group"%><br>
-    <%= form.text_field :author, value:current_user.username,:readonly => true,class: "form-control form-control-lg mb-3"%>
-  </div>
+   
   <div>
     <%= form.label :published,class:"form-group"%><br>
     <%= form.check_box :published,class:"form-check-input mb-3" %>

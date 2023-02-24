@@ -23,10 +23,12 @@
                   </ul>
                 </div>
                 <div>
-                 
-                  <a href="/home/userprofile" class="btn btn-outline-dark btn-rounded btn-sm"
-                    data-mdb-ripple-color="dark">See profile</a>
-                    
+                <%a1 = @user.id%>
+               
+                  <p><%=link_to "user profile",home_ufile_url(a1)%>
+                  <%# <a href="/admins/userpage" class="btn btn-outline-dark btn-rounded btn-sm"
+                    data-mdb-ripple-color="dark">See profile</a>   %>
+                     
             
                   
                 </div>
@@ -44,10 +46,12 @@
  
            
 <br>
+<div class="row">
 <% @post.each do |post|%>
-<div class="card" style="width: 48rem;padding :25px;margin-top:50px;margin-left:150px;">
+  <div class="col-4">
+<div class="card" style="width: 18rem;padding :25px;margin-top:50px;margin-left:80px;">
 
-  <%=image_tag(post.file,style:'height:225px;width:550px;margin-left:70px;') %>
+  <%=image_tag(post.file,style:'height:225px;width:250px;') %>
   <div class="card-body">
     <h5 class="card-title"><%=post.title %></h5>
     <p class="card-text"><%=post.content%></p>
@@ -65,4 +69,9 @@
 
 </div>
 <br>
+</div>
 <%end%>
+</div>
+<div style="margin-left:800px;margin-top:10px;">
+  <%= paginate @post %>
+</div>

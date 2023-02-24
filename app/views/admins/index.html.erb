@@ -5,9 +5,15 @@
 
  
   <div class="card-body">
-      <p><%=link_to image_tag(user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;margin-right:20px;'),userprofile_admin_path(user.id)%></a>
+      <p><%=link_to image_tag(user.image,class:"img-fluid rounded-circle border border-dark border-3",style:'width: 70px;margin-right:20px;'),userprofile_admin_path(user.id)%>
     <b> Posts: <%= user.posts.count%><span style="margin-right:20px"></span>
     Comments:<%=Comment.joins(:post).where(:posts => { :user_id => user.id}).count%>
+    <%= link_to image_tag("/assets/deletepost.png",style: 'height:40px;width:40px;'),admin_path(user.id),data: { 
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+}%>
+
+ 
     </b></p>
     <h4 class="card-text"><%=user.username %></h4>
    

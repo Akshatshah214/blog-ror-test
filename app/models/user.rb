@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :posts
   has_many :comments, through: :posts
+  has_many :postsaves
+  
   devise :database_authenticatable,
          :registerable,
          :recoverable, 

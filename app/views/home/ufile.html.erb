@@ -1,13 +1,4 @@
-
-<a href="/users/edit"><%= image_tag ("/assets/edit2.jpeg"), style: 'height:50px;width:50px;float:right;margin-left: auto;margin-top:20px;',class: "img-responsive"%></a>
-<%= link_to image_tag("/assets/exit.png",style: 'height:50px;width:50px;margin-left: 1070px;border-radius: 50%;margin-top:10px;'),registration_path(current_user),data: { 
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-}%>
-                  
-<%=link_to image_tag("/assets/savep.png",style: 'height:50px;width:50px;margin-left: 1070px;border-radius: 50%;margin-top:10px;'),home_usersave_path%>
-
-
+<h2>user profile</h2>
 
 <section class="vh-100" style="background-color: #f4f5f7;">
   <div class="container  h-80">
@@ -18,13 +9,13 @@
             <div class="col-md-4 gradient-custom text-center text-white"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
             
-                <%=image_tag(current_user.image,class:"img-fluid my-5",style:'height:50%;width:80%;border-radius: 50%;margin-top:25px',class: "img-responsive")%>
+                <%=image_tag(@user.image,class:"img-fluid my-5",style:'height:50%;width:80%;border-radius: 50%;margin-top:25px',class: "img-responsive")%>
              
               <i class="far fa-edit mb-5"></i>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
-                 <h3><%= current_user.username %></h3>
+                 <h3><%= @user.username %></h3>
                 <hr class="mt-0 mb-4">
                 <div class="row pt-1">
                   
@@ -34,21 +25,21 @@
         
                   <li class="contacts-block__item">
                     <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                    <span><%= current_user.birth_date %></span>
+                    <span><%= @user.birth_date %></span>
                   </li>
                 
                   <li class="contacts-block__item">
                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span><%= current_user.email%></span>
+                    <span><%= @user.email%></span>
                   </li>
                   <li class="contacts-block__item">
                     <i class="fa fa-phone" aria-hidden="true"></i>
-                    <span><%= current_user.contact %></span>
+                    <span><%= @user.contact %></span>
                   </li>
                   
                   <li class="contacts-block__item mb-0">
                     <i class="fa fa-adjust" aria-hidden="true"></i>
-                    <span><%= current_user.address %></span>
+                    <span><%= @user.address %></span>
                   </li>
                 </ul>
                 </div>

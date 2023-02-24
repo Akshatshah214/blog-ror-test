@@ -6,7 +6,8 @@
 
       <p class="card-text"><%= comment.body %>
     
-      <% if @current_user.id == @post.user.id%>
+      <%# if @current_user.id == @post.user.id%>
+      <% if can? :destroy ,comment %>
       <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), [comment.post, comment], data: {
                   turbo_method: :delete,
                   turbo_confirm: "Are you sure?"

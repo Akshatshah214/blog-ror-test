@@ -1,0 +1,33 @@
+<h1>Food Blog</h1>
+<% @post.each do |post| %>
+  <div
+    class="card"
+    style="width: 18rem;padding :25px;margin-top:50px;margin-left:80px;"
+  >
+
+    <%= image_tag(post.file, style: "height:225px;width:250px;") %>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.content %></p>
+      <p class="card-text text-primary">created by:<%= post.author %></p>
+
+      <%= link_to image_tag("/assets/comment1.png", style: "height:35px;width:35px;"),
+      post_comments_path(post.id) %>
+      <% if can? :update, post %>
+      <%= link_to image_tag("/assets/editpost.png",style: 'height:50px;width:50px;'), edit_post_path(post) %></li>
+      <% end %>
+
+      <% if can? :destroy, post %>
+      <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), post_path(post), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+      <% end %>
+
+    </div>
+
+  </div>
+<% end %>
+<div style="margin-left:800px;margin-top:10px;">
+  <%= paginate @post %>
+</div>

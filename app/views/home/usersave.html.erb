@@ -1,0 +1,24 @@
+<h1>Save Post</h1>
+<%  @savepost.each do |post| %>
+  <div
+    class="card"
+    style="width: 18rem;padding :25px;margin-top:50px;margin-left:80px;"
+  >
+ 
+   <%a1=Post.where(id:post.post_id)%>
+   <%  a1.each do |post| %>
+    <%= image_tag(post.file, style: "height:225px;width:250px;") %>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.content %></p>
+      <p class="card-text text-primary">created by:<%= post.author %></p>
+    </div>
+
+   <%end%>
+  
+
+    <%#= image_tag(post.post_id.file, style: "height:225px;width:250px;") %>
+    
+  </div>
+<% end %>
+
