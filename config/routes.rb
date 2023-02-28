@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to:"search#index"
   get 'postsaves/index'
   get 'admins/index'
   get 'comments/index'
