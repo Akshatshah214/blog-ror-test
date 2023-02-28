@@ -36,7 +36,8 @@
             </div>
             <hr>
             <p class="my-4 pb-1"><b>Posts: <%= current_user.posts.count%></b>
-            <b style="margin-left:25px;">Comments: <%=@cm %> </b></p>
+            <b style="margin-left:25px;">Comments: <%=@cm %> </b>
+             <b style="margin-left:25px;">Likes: <%=@like %> </b></p>
             
            
         </div>
@@ -62,6 +63,17 @@
     <p class="card-text text-primary">created by: <%=post.author%></p>
     
   <p>
+  <%like = Like.find_by(users_id:current_user,post_id:post.id)%>
+      
+      <% if like.nil? == true %>
+          <%=link_to image_tag("/assets/like2.png",style: "height:35px;width:35px;margin-right:10px;"),
+          post_create_like_path(post.id)%>
+      <%else%>
+          <%=link_to image_tag("/assets/dislike2.png",style: "height:35px;width:35px;margin-right:10px;"),post_like_path(like.post.id,like), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure dislike?"
+                } %>
+      <%end%>
   <%= link_to image_tag("/assets/comment1.png",style:'height:35px;width:35px;'),post_comments_path(post.id) %>
   <%= link_to image_tag("/assets/editpost.png",style: 'height:50px;width:50px;'), edit_post_path(post) %></li>
   <%= link_to image_tag("/assets/deletepost.png",style: 'height:35px;width:35px;'), post_path(post), data: {
@@ -70,7 +82,10 @@
                   } %>
   
    </p>
-   <p><%=Comment.where("post_id=?",post.id).count%></p>
+   <p>
+      <b style="margin-left:10px;"><%=Like.where("post_id=?",post.id).count%></b>
+      <b style="margin-left:40px;"><%=Comment.where("post_id=?",post.id).count%></b>
+      </p>
   <p><%= link_to "All comments",post_comments_path(post.id),style:"color:Gray;text-decoration: none;" %></p>
   </div>
  
@@ -78,4 +93,9 @@
  </div>
     </div>
     <%end%>
+</div>
+<p><%= link_to "Back", :back %></p>
+
+<div style="margin-left:800px;margin-top:10px;">
+  <%= paginate @post %>
 </div>

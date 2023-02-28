@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   paginates_per 6
   belongs_to :user
   has_many :comments
+  has_many :likes
   has_one_attached :file
 
   has_many :postsaves

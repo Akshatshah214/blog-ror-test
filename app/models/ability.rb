@@ -5,6 +5,10 @@ class Ability
 
     if user.try(:admin?)  
       can :manage, :all
+    
+    elsif user.try(:editor?)
+      can [:destroy,:update,:read],Post
+      can [:destroy,:read],Comment
 
     else
       can :destroy,Comment do |comment|

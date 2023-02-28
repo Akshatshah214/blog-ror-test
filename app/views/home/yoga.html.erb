@@ -11,6 +11,18 @@
       <p class="card-text"><%= post.content %></p>
       <p class="card-text text-primary">created by:<%= post.author %></p>
 
+     <p>
+      <%like = Like.find_by(users_id:current_user,post_id:post.id)%>
+      
+      <% if like.nil? == true %>
+          <%=link_to image_tag("/assets/like2.png",style: "height:35px;width:35px;margin-right:10px;"),
+          post_create_like_path(post.id)%>
+      <%else%>
+          <%=link_to image_tag("/assets/dislike2.png",style: "height:35px;width:35px;margin-right:10px;"),post_like_path(like.post.id,like), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure dislike?"
+                } %>
+      <%end%>
       <%= link_to image_tag("/assets/comment1.png", style: "height:35px;width:35px;"),
       post_comments_path(post.id) %>
       <% if can? :update, post %>
@@ -23,7 +35,29 @@
                     turbo_confirm: "Are you sure?"
                   } %>
       <% end %>
+      </p>
+      <p>
+      <b style="margin-left:10px;"><%=Like.where("post_id=?",post.id).count%></b>
+      <b style="margin-left:40px;"><%=Comment.where("post_id=?",post.id).count%></b>
+      </p>
+      <p><%= link_to "All comments",post_comments_path(post.id),style:"color:Gray;text-decoration: none;" %></p>
+     
+       <p><%savepost = Postsave.where(user_id:current_user,post_id:post.id)%>
+       
+       <% if savepost.empty? == true %>
+       
+          <%= link_to image_tag("/assets/save.png",style: 'height:35px;width:35px;'),post_create_order_path(post.id) %>
+       <%else%>
+          <%postsave = savepost.ids.join.to_i%>
+          <%a1=Postsave.find(postsave)%>
+         <p><%#= image_tag("/assets/unsave.png",style: 'height:45px;width:45px;')%></p>
+         <p><%= link_to image_tag("/assets/unsave.png",style: 'height:45px;width:45px;'),post_postsafe_path(a1.post.id,a1), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></p>
 
+       <% end %>
+       </p>
     </div>
 
   </div>

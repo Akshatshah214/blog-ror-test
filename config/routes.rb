@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   }
   resources :posts do
     resources :comments
+    get "publish/", to: "comments#publish"
+    resources :likes
+    get "create", to: "likes#create", as: :create_like
+
     resources :postsaves
-    get "create", to: "postsaves#create", as: :create_order  
+    get "savepost", to: "postsaves#create", as: :create_order  
   end
     
 

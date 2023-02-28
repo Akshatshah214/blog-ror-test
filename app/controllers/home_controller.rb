@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @post = Post.where("published= true").page params[:page]
+    @post = Post.where("published= true").order("created_at DESC").page params[:page]
+  
   end
 
   def profile
@@ -12,22 +13,24 @@ class HomeController < ApplicationController
     render template: "home/usersave"
   end
   def userpage
+    @like=Like.joins(:post).where(:posts => { :user_id => current_user}).count
+
     @cm = Comment.joins(:post).where(:posts => { :user_id => current_user.id}).count
-    @post = Post.where("user_id=?",current_user)
+    @post = Post.where("user_id=?",current_user).order("created_at DESC").page params[:page]
     render template: "home/userpost"
   end
   def yoga
-    @post=Post.where("category=?","yoga").page params[:page]
+    @post=Post.where("category=?","yoga").order("created_at DESC").page params[:page]
     render template: "home/yoga"
 
   end
   def historical
-    @post= Post.where("category=?","historical").page params[:page]
+    @post= Post.where("category=?","historical").order("created_at DESC").page params[:page]
     render template: "home/historical"
 
   end
   def food
-    @post= Post.where("category=?","food").page params[:page]
+    @post= Post.where("category=?","food").order("created_at DESC").page params[:page]
     render template: "home/food"
 
   end

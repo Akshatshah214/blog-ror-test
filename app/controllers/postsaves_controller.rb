@@ -23,4 +23,14 @@ class PostsavesController < ApplicationController
     end
    
   end
+  def destroy
+    @postsave = Postsave.find(params[:id])
+    if @postsave.destroy
+      flash[:alert]= "unsave post"
+      redirect_to root_path, status: :see_other
+    else
+
+      redirect_to root_path, status: :see_other
+    end
+  end
 end

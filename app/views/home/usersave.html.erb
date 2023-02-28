@@ -12,6 +12,13 @@
       <h5 class="card-title"><%= post.title %></h5>
       <p class="card-text"><%= post.content %></p>
       <p class="card-text text-primary">created by:<%= post.author %></p>
+       <%savepost = Postsave.where(user_id:current_user,post_id:post.id)%>
+       <%postsave = savepost.ids.join.to_i%>
+          <%b1=Postsave.find(postsave)%>
+      <p><%= link_to image_tag("/assets/unsave.png",style: 'height:45px;width:45px;'),post_postsafe_path(b1.post.id,b1), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></p>
     </div>
 
    <%end%>

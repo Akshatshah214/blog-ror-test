@@ -1,0 +1,30 @@
+<h1>hello admin user</h1>
+
+<p>
+  A new  <%= @object.class.to_s %> has been created :
+</p>
+
+<%post_id=0%>
+<%id=0%>
+<% @object.attributes.each do |attr_key,attr_value|%>
+   
+      <% if attr_key == "post_id"%>
+         <%post_id=attr_value%>
+      <%end%>
+       <% if attr_key == "id"%>
+         <%id=attr_value%>
+      <%end%>
+      <% if attr_key == "body"%>
+      <p><strong>Comment Body:=</strong> <%=attr_value %></p>
+      <%end%>
+      
+<% end %>
+
+
+
+
+<%=link_to "publish this comment???",post_publish_url(post_id,id)%>
+
+
+<h4>Thank </h4>
+<h4>Admin Team</h4>
